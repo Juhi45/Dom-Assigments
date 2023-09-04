@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Calculator</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .btn {
+            margin: 5px;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <input type="text" id="display" class="form-control" readonly>
+        <div>
+            <button class="btn btn-primary" onclick="addToDisplay('7')">7</button>
+            <button class="btn btn-primary" onclick="addToDisplay('8')">8</button>
+            <button class="btn btn-primary" onclick="addToDisplay('9')">9</button>
+            <button class="btn btn-danger" onclick="addToDisplay('+')">+</button>
+        </div>
+        <div>
+            <button class="btn btn-primary" onclick="addToDisplay('4')">4</button>
+            <button class="btn btn-primary" onclick="addToDisplay('5')">5</button>
+            <button class="btn btn-primary" onclick="addToDisplay('6')">6</button>
+            <button class="btn btn-danger" onclick="addToDisplay('-')">-</button>
+        </div>
+        <div>
+            <button class="btn btn-primary" onclick="addToDisplay('1')">1</button>
+            <button class="btn btn-primary" onclick="addToDisplay('2')">2</button>
+            <button class="btn btn-primary" onclick="addToDisplay('3')">3</button>
+            <button class="btn btn-danger" onclick="addToDisplay('*')">*</button>
+        </div>
+        <div>
+            <button class="btn btn-primary" onclick="addToDisplay('0')">0</button>
+            <button class="btn btn-success" onclick="clearDisplay()">C</button>
+            <button class="btn btn-success" onclick="calculateResult()">=</button>
+            <button class="btn btn-danger" onclick="addToDisplay('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        let displayValue = "";
+
+        function addToDisplay(value) {
+            displayValue += value;
+            document.getElementById("display").value = displayValue;
+        }
+
+        function clearDisplay() {
+            displayValue = "";
+            document.getElementById("display").value = "";
+        }
+
+        function calculateResult() {
+            try {
+                const result = eval(displayValue);
+                document.getElementById("display").value = result;
+                displayValue = result.toString();
+            } catch (error) {
+                document.getElementById("display").value = "Error";
+                displayValue = "";
+            }
+        }
+    </script>
+</body>
+</html>
