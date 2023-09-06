@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .score-box {
+            font-size: 24px;
+            margin: 10px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MIN & MAX LEADERBOARD</h1>
+        <button onclick="addToScore(1)">1</button>
+        <button onclick="addToScore(2)">2</button>
+        <button onclick="addToScore(3)">3</button>
+        <button onclick="addToScore(4)">4</button>
+        <button onclick="addToScore(5)">5</button>
+        <button onclick="addToScore(6)">6</button>
+        <button onclick="addToScore(7)">7</button>
+        <button onclick="addToScore(8)">8</button>
+        <button onclick="addToScore(9)">9</button>
+        <button onclick="addToScore(0)">0</button>
+        <br>
+        <input id="score-input" class="score-box" type="text" readonly>
+        <br>
+        <button onclick="updateMinMax()">ENTER</button>
+        <br>
+        <div>
+            <span>MIN:</span>
+            <span id="min-score" class="score-box">999999</span>
+        </div>
+        <div>
+            <span>MAX:</span>
+            <span id="max-score" class="score-box">0</span>
+        </div>
+    </div>
+
+    <script>
+        let currentScore = '';
+
+        function addToScore(number) {
+            currentScore += number;
+            document.getElementById('score-input').value = currentScore;
+        }
+
+        function updateMinMax() {
+            const score = parseInt(currentScore, 10);
+
+            if (!isNaN(score)) {
+                const minScoreElement = document.getElementById('min-score');
+                const maxScoreElement = document.getElementById('max-score');
+
+                const currentMin = parseInt(minScoreElement.textContent, 10);
+                const currentMax = parseInt(maxScoreElement.textContent, 10);
+
+                if (score < currentMin) {
+                    minScoreElement.textContent = score;
+                }
+
+                if (score > currentMax) {
+                    maxScoreElement.textContent = score;
+                }
+
+                currentScore = '';
+                document.getElementById('score-input').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
