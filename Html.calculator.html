@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        #Calculator{
+            color:teal;
+            margin-left: 560px;
+            font-size:x-large
+        }
+        #parent{
+            width: 380px;
+            height: 400px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            margin-left: 550px;  
+            padding: 10px 0px 20px;
+        }
+        #container{
+            display: grid;
+            grid-template-columns:repeat(4,1fr);
+            grid-template-rows: repeat(4,1fr);
+            gap: 5px;
+            width: 250px;
+            height: 250px;
+            margin: auto;
+        }
+        #container>div:nth-child(1 ){
+            background-color: white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(2){
+            background-color:white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(3){
+            background-color:white ;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(4){
+            background-color: black;
+            color: white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(5){
+            background-color: white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(6){
+            background-color: white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(7){
+            background-color:white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(8){
+            background-color: black;
+            color: white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(9){
+            background-color: white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(10){
+            background-color:white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(11){
+            background-color:white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(12){
+            background-color:black;
+            color: white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(13){
+            background-color: red;
+            display:grid;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(14){
+            background-color: white;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child( 15){
+            background-color: black;
+            color: white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #container>div:nth-child(16){
+            background-color: black;
+            color: white;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        
+        #input{
+            width: 250px;
+            height: 60px;
+            margin: auto;
+            margin-top: 50px;
+            margin-bottom: 10px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="Calculator">
+        <h1>Masai Calculator </h1>
+    </div>
+    <div></div>
+    <div id="parent">
+        <div id="input"></div>
+        <div id="container">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>+</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>-</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>X</div>
+            <div>C</div>
+            <div>0</div>
+            <div>=</div>
+            <div>/</div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const inputField = document.createElement('input');
+    inputField.setAttribute('type', 'text');
+    inputField.setAttribute('id', 'result');
+    document.getElementById('input').appendChild(inputField);
+
+    // Add event listeners to calculator buttons
+    const buttons = document.querySelectorAll('#container div');
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const buttonText = button.textContent;
+            if (buttonText === '=') {
+                try {
+                    const result = eval(inputField.value);
+                    inputField.value = result;
+                } catch (error) {
+                    inputField.value = 'Error';
+                }
+            } else if (buttonText === 'C') {
+                inputField.value = '';
+            } else {
+                inputField.value += buttonText;
+            }
+        });
+    });
+});
+
+</script>
+</html>
