@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #timer {
+            font-size: 2em;
+            margin: 20px;
+        }
+        button {
+            font-size: 1em;
+            margin: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: aqua;
+        }
+    </style>
+</head>
+    <body>
+       <div id="timer">00h:00m:00s</div>
+       <button id="start">Start</button>
+       <button id="pause">Pause</button>
+       <button id="reset">Reset</button>
+    </body>
+    <script>
+        let timer;
+        let isRunning = false;
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+
+        const timerElement = document.getElementById("timer");
+        const startButton = document.getElementById("start");
+        const pauseButton = document.getElementById("pause");
+        const resetButton = document.getElementById("reset");
+
+        startButton.addEventListener("click", startTimer);
+        pauseButton.addEventListener("click", pauseTimer);
+        resetButton.addEventListener("click", resetTimer);
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                timer = setInterval(updateTimer, 1000);
+                startButton.disabled = true;
+            }
+        }
+
+        function updateTimer() {
+            seconds++;
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes === 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            displayTime();
+        }
+
+        function displayTime() {
+            const formattedTime = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+            timerElement.textContent = formattedTime;
+        }
+
+        function pad(number) {
+            return number.toString().padStart(2, '0');
+        }
+
+        function pauseTimer() {
+            if (isRunning) {
+                isRunning = false;
+                clearInterval(timer);
+                startButton.disabled = false;
+            }
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            displayTime();
+        }
+    </script>
+</html>
