@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .payment-container {
+            text-align: center;
+            padding: 20px;
+        }
+        .processing {
+            font-size: 24px;
+            color: #007bff;
+        }
+        .success {
+            font-size: 24px;
+            color: #4caf50;
+        }
+        .failure {
+            font-size: 24px;
+            color: #f44336;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color:green;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Payment System</h1>
+        <button onclick="processPayment()">Pay</button>
+        <div id="payment-status"></div>
+    </div>
+</body>
+<script>
+    function simulatePayment() {
+        // Simulate payment success or failure randomly
+        const isSuccess = Math.random() < 0.5; // 50% success rate
+
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (isSuccess) {
+                    resolve();
+                } else {
+                    reject();
+                }
+            }, 2000); // Simulate a 2-second payment process
+        });
+    }
+
+    async function processPayment() {
+        const paymentStatusElement = document.getElementById("payment-status");
+        paymentStatusElement.innerHTML = "";
+
+        paymentStatusElement.innerHTML = '<div class="processing">Processing...</div>';
+            
+        try {
+            await simulatePayment();
+            paymentStatusElement.innerHTML = '<div class="success">Payment Successful!</div>';
+        } catch (error) {
+            paymentStatusElement.innerHTML = '<div class="failure">Payment Failed!</div>';
+        }
+    }
+</script>
+</html>
