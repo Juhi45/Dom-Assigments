@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        input[type="number"] {
+            width: 50px;
+            text-align: center;
+            font-size: 1em;
+            margin: 5px;
+        }
+        button {
+            font-size: 1em;
+            margin: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <h1>Countdown Timer</h1>
+    <input type="number" id="hours" min="0" placeholder="Hours">
+    <input type="number" id="minutes" min="0" max="59" placeholder="Minutes">
+    <input type="number" id="seconds" min="0" max="59" placeholder="Seconds">
+    <button id="start">Start</button>
+    <button id="pause">Pause</button>
+    <button id="reset">Reset</button>
+
+    <div id="timer"></div>
+</body>
+
+    <script>
+        let timerInterval;
+        let hoursInput = document.getElementById('hours');
+        let minutesInput = document.getElementById('minutes');
+        let secondsInput = document.getElementById('seconds');
+        let startButton = document.getElementById('start');
+        let pauseButton = document.getElementById('pause');
+        let resetButton = document.getElementById('reset');
+        let timerDisplay = document.getElementById('timer');
+        let totalSeconds = 0;
+        let isRunning = false;
+
+        startButton.addEventListener('click', startTimer);
+        pauseButton.addEventListener('click', pauseTimer);
+        resetButton.addEventListener('click', resetTimer);
+
+        function startTimer() {
+            if (!isRunning) {
+                totalSeconds = calculateTotalSeconds();
+                timerInterval = setInterval(updateTimerDisplay, 1000);
+                isRunning = true;
+                disableInputs();
+            }
+        }
+
+        function calculateTotalSeconds() {
+            let hours = parseInt(hoursInput.value) || 0;
+            let minutes = parseInt(minutesInput.value) || 0;
+            let seconds = parseInt(secondsInput.value) || 0;
+            return hours * 3600 + minutes * 60 + seconds;
+        }
+
+        function updateTimerDisplay() {
+            if (totalSeconds > 0) {
+                totalSeconds--;
+                let hours = Math.floor(totalSeconds / 3600);
+                let minutes = Math.floor((totalSeconds % 3600) / 60);
+                let seconds = totalSeconds % 60;
+                timerDisplay.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+            } else {
+                clearInterval(timerInterval);
+                timerDisplay.textContent = "Time's up!";
+                isRunning = false;
+                enableInputs();
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            enableInputs();
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timerDisplay.textContent = "00:00:00";
+            totalSeconds = 0;
+            hoursInput.value = '';
+            minutesInput.value = '';
+            secondsInput.value = '';
+        }
+
+        function disableInputs() {
+            hoursInput.disabled = true;
+            minutesInput.disabled = true;
+            secondsInput.disabled = true;
+        }
+
+        function enableInputs() {
+            hoursInput.disabled = false;
+            minutesInput.disabled = false;
+            secondsInput.disabled = false;
+        }
+
+        function pad(number) {
+            return number.toString().padStart(2, '0');
+        }
+    </script>
+</html>
