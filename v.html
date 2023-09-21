@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Virtual Food Ordering System</title>
+    </head>
+    <style>
+        #orderButton{
+            background-color: aqua;
+        }
+    </style>
+    <body>
+       <h1>Welcome to Virtual McDonald's</h1>
+       <button id="orderButton">Order Food</button>
+       <br>
+       <label>Choose Food Items:</label>
+       <input type="checkbox" id="burger" name="food" value="Burger">
+       <label for="burger">Burger</label>
+       <input type="checkbox" id="fries" name="food" value="Fries">
+       <label for="fries">Fries</label>
+       <input type="checkbox" id="drink" name="food" value="Drink">
+       <label for="drink">Drink</label>
+       <br>
+       <div id="foodImage"></div>
+       <div id="orderId"></div>
+    </body>
+    <script>// Define an array of food items with their corresponding images.
+        const foodItems = [
+            { name:"Berger", image:"https://www.shutterstock.com/shutterstock/photos/747677671/display_1500/stock-photo-burger-747677671.jpg"},
+            { name: "Fries", image: "https://img.freepik.com/premium-photo/french-fries-red-carton-box-isolated-white_488220-4272.jpg"},
+            { name: "Drink", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWN1Na6GNLlzNXZQfLWKFPekNaLobrcb3GvEY1OHQbsTeVXx7e_y8C&s=0" }
+        ];
+        
+        // Function to simulate ordering food with a promise.
+        function orderFood() {
+            return new Promise((resolve, reject) => {
+                // Generate a random delay for the order (between 2 to 5 seconds).
+                const delaySeconds = Math.floor(Math.random() * 4) + 2;
+        
+                setTimeout(() => {
+                    // Resolve the promise after the delay.
+                    resolve();
+                }, delaySeconds * 1000);
+            });
+        }
+        
+        // Function to handle the "Order Food" button click.
+        document.getElementById("orderButton").addEventListener("click", async () => {
+            // Clear previous order details.
+            document.getElementById("foodImage").innerHTML = "";
+            document.getElementById("orderId").textContent = "";
+        
+            // Get selected food items.
+            const selectedItems = Array.from(document.querySelectorAll('input[name="food"]:checked')).map(item => item.value);
+        
+            if (selectedItems.length === 0) {
+                alert("Please select at least one food item.");
+                return;
+            }
+        
+            try {
+                // Order food and wait for the promise to resolve.
+                await orderFood();
+        
+                // Display the ordered food and order ID.
+                const randomFood = foodItems[Math.floor(Math.random() * foodItems.length)];
+                document.getElementById("foodImage").innerHTML = `<img src="${randomFood.image}" alt="${randomFood.name}">`;
+                document.getElementById("orderId").textContent = `Order ID: ${generateOrderId()}`;
+            } catch (error) {
+                console.error("An error occurred while ordering food:", error);
+            }
+        });
+        
+        // Function to generate a random order ID.
+        function generateOrderId() {
+            return Math.floor(Math.random() * 10000);
+        }
+    </script>
+</html>
